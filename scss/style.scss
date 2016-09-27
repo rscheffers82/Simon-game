@@ -1,0 +1,68 @@
+/* Stylesheet for ... App */
+
+// vars
+$main-blue: #363E84;
+$dark-blue: #171A38;
+$white: #fafafc;
+
+// main style for the center layout
+body {
+  background: $white;
+  color: black;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+.main {
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+.box {
+  display: table-cell;
+}
+.footer {
+  display: table-row;
+  height:1px;
+  line-height: 2em;
+  background-color: #123456;
+  background-image:
+  linear-gradient(
+    $white, #123456 2px
+    );
+  color: #aaaaaa;
+}
+.footer a{
+  color: #ffffff;
+  padding: 2px 10px 2px 10px;
+  border-radius: 20px;
+}
+.footer a:hover{
+  background-color: #113456;
+  color: #000000;
+  padding: 2px 10px 2px 10px;
+  text-decoration: inherit;
+}
+
+/*====== Ignore section below ======*/
+/* Basic Style*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.tile img{
+	display: block;
+}
+
+/* === Custom styling depending on the project === */

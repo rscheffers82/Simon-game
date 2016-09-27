@@ -1,0 +1,16 @@
+FCC assignment location is:
+https://www.freecodecamp.com/challenges/build-a-javascript-calculator
+
+Certificate: Front-end Developer
+Level: Advanced
+
+=== { User stories } ===
+
+=== { Notes before startingn } ===
+
+=== { To-do list } ===
+
+- copy all code to codepen
+- check cross browser compatibility
+
+=== { Build notes } ===

@@ -9,6 +9,7 @@ $white: #fafafc;
 body {
   background: $white;
   color: black;
+  background: url(images/background.jpg) no-repeat center center fixed;
   font-family: 'Lato', sans-serif;
   margin: 0;
 }

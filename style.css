@@ -4,7 +4,8 @@ body {
   color: black;
   background: url(images/background.jpg) no-repeat center center fixed;
   font-family: 'Lato', sans-serif;
-  margin: 0; }
+  margin: 0;
+  font-size: 2vh; }
 
 .wrapper {
   height: 100%;
@@ -104,6 +105,72 @@ img {
   max-width: 31.11111vh;
   top: 24.35vh;
   left: 24.4vh; }
+
+.display {
+  position: absolute;
+  width: 8.88889vw;
+  height: 6.66667vw;
+  max-width: 8.88889vh;
+  max-height: 6.66667vh;
+  background-color: red;
+  border: 0.04em solid #000000;
+  border-radius: 5px;
+  top: 39vh;
+  left: 27.5vh;
+  font-size: 2em; }
+
+.start {
+  position: absolute;
+  width: 3.55556vw;
+  height: 3.55556vw;
+  max-width: 3.55556vh;
+  max-height: 3.55556vh;
+  border: 0.04em solid #000000;
+  background-color: red;
+  border-radius: 50%;
+  top: 41vh;
+  left: 39vh; }
+
+.strict {
+  position: absolute;
+  width: 3.55556vw;
+  height: 3.55556vw;
+  max-width: 3.55556vh;
+  max-height: 3.55556vh;
+  border: 0.04em solid #000000;
+  background-color: yellow;
+  border-radius: 50%;
+  top: 41vh;
+  left: 46vh; }
+
+.count {
+  font-size: 2vh;
+  /* This controls the size. */
+  position: absolute;
+  width: 3.55556vw;
+  height: 3.55556vw;
+  max-width: 3.55556vh;
+  max-height: 3.55556vh;
+  top: 46vh;
+  left: 29vh; }
+
+.start-txt {
+  position: absolute;
+  width: 3.55556vw;
+  height: 3.55556vw;
+  max-width: 3.55556vh;
+  max-height: 3.55556vh;
+  top: 46vh;
+  left: 37.5vh; }
+
+.strict-txt {
+  position: absolute;
+  width: 3.55556vw;
+  height: 3.55556vw;
+  max-width: 3.55556vh;
+  max-height: 3.55556vh;
+  top: 46vh;
+  left: 45vh; }
 
 /* DEBUG */
 .border {

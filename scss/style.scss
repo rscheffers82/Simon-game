@@ -12,6 +12,7 @@ body {
   background: url(images/background.jpg) no-repeat center center fixed;
   font-family: 'Lato', sans-serif;
   margin: 0;
+  font-size: 2vh;
 }
 .wrapper {
   height: 100%;
@@ -118,6 +119,7 @@ $degrees: 270deg;
   z-index: 2;
 }
 .simon-part-middle{
+  //background: url(images/middle2.png) no-repeat center center fixed;
   position: absolute;
   width: $width * (350/900);
   height: $height * (350/900);
@@ -127,7 +129,80 @@ $degrees: 270deg;
   top: 24.35vh;
   left: 24.4vh;  
 }
+.display{ //100 x 75 - 900x900
+  position: absolute;
+  width: $width * (100/900);
+  height: $height * (75/900);
+  max-width: $max-width * (100/900);
+  max-height: $max-height * (75/900);
+  background-color: red;
+  border: 0.04em solid #000000;
+  border-radius: 5px;
+  top: 39vh;
+  left: 27.5vh;
+  font-size: 2em;
+}
+.start{
+  position: absolute;
+  width: $width * (40/900);
+  height: $height * (40/900);
+  max-width: $max-width * (40/900);
+  max-height: $max-height * (40/900);
+  border: 0.04em solid #000000;
+  background-color: red;
+  border-radius: 50%;
+  top: 41vh;
+  left: 39vh;
+}
+.strict{
+  position: absolute;
+  width: $width * (40/900);
+  height: $height * (40/900);
+  max-width: $max-width * (40/900);
+  max-height: $max-height * (40/900);
+  border: 0.04em solid #000000;
+  background-color: yellow;
+  border-radius: 50%;
+  top: 41vh;
+  left: 46vh;
+}
 
+.count{
+  font-size: 2vh; /* This controls the size. */ 
+  position: absolute;
+  width: $width * (40/900);
+  height: $height * (40/900);
+  max-width: $max-width * (40/900);
+  max-height: $max-height * (40/900);
+  top: 46vh;
+  left: 29vh;  
+}
+
+.start-txt{
+  //font-size: 2vh; /* This controls the size. */ 
+  position: absolute;
+  width: $width * (40/900);
+  height: $height * (40/900);
+  max-width: $max-width * (40/900);
+  max-height: $max-height * (40/900);
+  top: 46vh;
+  left: 37.5vh;
+}
+
+.strict-txt{
+  //font-size: 2vh; /* This controls the size. */ 
+  position: absolute;
+  width: $width * (40/900);
+  height: $height * (40/900);
+  max-width: $max-width * (40/900);
+  max-height: $max-height * (40/900);
+  top: 46vh;
+  left: 45vh;  
+}
+
+.on-off{
+
+}
 
 /* DEBUG */
 .border{

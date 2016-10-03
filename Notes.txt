@@ -41,6 +41,13 @@ OUTPUT:
 	Flash color
 	slide on/off
 
+IMG PARTS:
+top-left
+top-right
+bottom-left
+bottom-right
+middle
+click-top-left
 	
 
 === { To-do list } ===

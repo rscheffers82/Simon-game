@@ -172,6 +172,60 @@ img {
   top: 46vh;
   left: 45vh; }
 
+/* === [ ON/OFF button ] === */
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  top: 50vh;
+  left: 35vh; }
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none; }
+
+input {
+  display: none; }
+
+/* The slider */
+.slider {
+  position: absolute;
+  width: 8vw;
+  height: 3.11111vw;
+  max-width: 8vh;
+  max-height: 3.11111vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #4d4d4d;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 5.33333vw;
+  height: 3.11111vw;
+  max-width: 5.33333vh;
+  max-height: 3.11111vh;
+  left: 0;
+  top: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(0.88889vh);
+  -ms-transform: translateX(0.88889vh);
+  transform: translateX(2.66667vh); }
+
 /* DEBUG */
 .border {
   border: 5px solid #222223; }

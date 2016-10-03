@@ -205,6 +205,67 @@ $degrees: 0deg;
   left: 45vh;  
 }
 
+/* === [ ON/OFF button ] === */
+/* The switch - the box around the slider */
+.switch {
+  position: absolute;
+  //width: $width * (180/900);
+  //height: $height * (90/900);
+  //max-width: $max-width * (180/900);
+  //max-height: $max-height * (90/900);
+  top: 50vh;
+  left: 35vh;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+input {display:none;}
+
+/* The slider */
+.slider {         // casing for the switch
+  position: absolute;
+  width: $width * (90/900);
+  height: $height * (35/900);
+  max-width: $max-width * (90/900);
+  max-height: $max-height * (35/900);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #4d4d4d;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {    // inner switch
+  position: absolute;
+  content: "";
+  width: $width * (60/900);
+  height: $height * (35/900);
+  max-width: $max-width * (60/900);
+  max-height: $max-height * (35/900);
+  left: 0;
+  top: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX( $max-width * (10/900) );
+  -ms-transform: translateX( $max-width * (10/900) );
+  transform: translateX( $max-width * (30/900) );
+}
 
 /* DEBUG */
 .border{

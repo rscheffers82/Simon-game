@@ -59,17 +59,51 @@ body {
   height: 100%; }
 
 img {
-  display: block; }
+  display: inline-block; }
 
 /* === Custom styling depending on the project === */
 .simon {
+  position: relative;
+  top: 0px;
+  left: 0px;
   display: inline-block;
-  min-width: 50px;
-  min-height: 50px;
-  width: 75vw;
-  height: 75vw;
-  max-height: 75vh;
-  max-width: 75vh; }
+  width: 80vw;
+  height: 80vw;
+  max-height: 80vh;
+  max-width: 80vh; }
+
+.simon-part, .simon-part-left, .simon-part-right, .simon-part-click {
+  position: relative;
+  width: 40vw;
+  height: 40vw;
+  max-height: 40vh;
+  max-width: 40vh; }
+
+.simon-part-left {
+  float: left; }
+
+.simon-part-right {
+  float: right; }
+
+.simon-part-click {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  z-index: 2; }
+
+.simon-part-middle {
+  position: absolute;
+  width: 31.11111vw;
+  height: 31.11111vw;
+  max-height: 31.11111vh;
+  max-width: 31.11111vh;
+  top: 24.35vh;
+  left: 24.4vh; }
 
 /* DEBUG */
 .border {

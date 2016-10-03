@@ -28,7 +28,7 @@ User Story: I can win the game by getting a series of 20 steps correct. I am not
 - increase speed
 
 INPUT:
-	click on
+	click on/off
 	click start
 	click strict
 	click color 4 options
@@ -41,10 +41,11 @@ OUTPUT:
 	Flash color
 	slide on/off
 
+	
 
 === { To-do list } ===
 - Which technique to use, full image, parts, polygon points
-
+- issue to figure out, resizing creates problems. vh/vw.
 
 
 - copy all code to codepen
@@ -59,3 +60,28 @@ http://css3.bradshawenterprises.com/cfimg/
 
 fancy bottom footer gradient
 http://www.colorzilla.com/gradient-editor
+
+Toggle button
+http://www.w3schools.com/howto/howto_css_switch.asp
+
+Digits in CSS
+http://thisisbensblog.com/creating-a-digital-watch-in-pure-css/
+
+Resize issue
+http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onresize_window
+
+Inner/outer height, width, combine with resize.
+http://www.w3schools.com/jsref/prop_win_outerheight.asp
+http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_innerheight
+
+Combined here's how it works, implement and change CSS based on the resize. vw or vh
+
+window.addEventListener("resize", myFunction);
+
+function myFunction() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    document.getElementById("demo").innerHTML = "Width: " + w + "<br>Height: " + h;
+if (w > h) console.log('Width = larger');
+else console.log('height = larger');
+}

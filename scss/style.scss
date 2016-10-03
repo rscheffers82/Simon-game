@@ -67,24 +67,65 @@ body {
 }
 
 img{
-	display: block;
+	display: inline-block;
 }
+
+$width: 80vw;
+$height: 80vw;
+$max-height: 80vh;
+$max-width: 80vh;
+$degrees: 270deg;
 
 /* === Custom styling depending on the project === */
 .simon{
+  position: relative;
+  top: 0px;
+  left: 0px;
   display: inline-block;
-  min-width: 50px;
-  min-height: 50px;
-
-  width: 75vw;
-  height: 75vw;
-  max-height: 75vh;
-  max-width: 75vh;
+  width: $width;
+  height: $height;
+  max-height: $max-height;
+  max-width: $max-width;
 }
-.game{
- // max-height: 85vh;
-  //max-width: 85vh;
-  //margin: 0 auto;
+
+.simon-part{
+  position: relative;
+  width: $width / 2;
+  height: $height / 2;
+  max-height: $max-height / 2;
+  max-width: $max-width / 2;
+}
+
+.simon-part-left{
+  @extend .simon-part;
+  float: left;
+
+}
+.simon-part-right{
+  @extend .simon-part;
+  float: right;
+}
+.simon-part-click{
+  @extend .simon-part;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  -webkit-transform: rotate($degrees);
+  -moz-transform: rotate($degrees);
+  -o-transform: rotate($degrees);
+  -ms-transform: rotate($degrees);
+  transform: rotate($degrees);
+  z-index: 2;
+}
+.simon-part-middle{
+  position: absolute;
+  width: $width * (350/900);
+  height: $height * (350/900);
+  max-height: $max-height * (350/900);
+  max-width: $max-width * (350/900);
+
+  top: 24.35vh;
+  left: 24.4vh;  
 }
 
 

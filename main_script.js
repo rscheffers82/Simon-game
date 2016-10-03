@@ -21,3 +21,8 @@ function correctSize() {
   		$('.simon-part-middle').css('left','24.4vw'); 
 	}
 }
+
+$('.simon').on('click', function(e){
+
+	console.log(e.target.id);
+});

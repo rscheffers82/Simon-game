@@ -88,13 +88,13 @@ img {
 
 .simon-part-click {
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   left: 0px;
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  transform: rotate(270deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
   z-index: 2; }
 
 .simon-part-middle {
@@ -119,7 +119,7 @@ img {
   left: 27.5vh;
   font-size: 2em; }
 
-.start {
+#start {
   position: absolute;
   width: 3.55556vw;
   height: 3.55556vw;
@@ -131,7 +131,7 @@ img {
   top: 41vh;
   left: 39vh; }
 
-.strict {
+#strict {
   position: absolute;
   width: 3.55556vw;
   height: 3.55556vw;

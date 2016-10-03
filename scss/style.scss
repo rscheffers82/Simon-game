@@ -75,7 +75,7 @@ $width: 80vw;
 $height: 80vw;
 $max-height: 80vh;
 $max-width: 80vh;
-$degrees: 270deg;
+$degrees: 0deg;
 
 /* === Custom styling depending on the project === */
 .simon{
@@ -109,7 +109,7 @@ $degrees: 270deg;
 .simon-part-click{
   @extend .simon-part;
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   left: 0px;
   -webkit-transform: rotate($degrees);
   -moz-transform: rotate($degrees);
@@ -142,7 +142,12 @@ $degrees: 270deg;
   left: 27.5vh;
   font-size: 2em;
 }
-.start{
+
+#on-off{
+
+}
+
+#start{
   position: absolute;
   width: $width * (40/900);
   height: $height * (40/900);
@@ -154,7 +159,7 @@ $degrees: 270deg;
   top: 41vh;
   left: 39vh;
 }
-.strict{
+#strict{
   position: absolute;
   width: $width * (40/900);
   height: $height * (40/900);
@@ -200,9 +205,6 @@ $degrees: 270deg;
   left: 45vh;  
 }
 
-.on-off{
-
-}
 
 /* DEBUG */
 .border{

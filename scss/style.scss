@@ -118,17 +118,7 @@ $degrees: 0deg;
   transform: rotate($degrees);
   z-index: 2;
 }
-.simon-part-middle{
-  //background: url(images/middle2.png) no-repeat center center fixed;
-  position: absolute;
-  width: $width * (350/900);
-  height: $height * (350/900);
-  max-height: $max-height * (350/900);
-  max-width: $max-width * (350/900);
 
-  top: 24.35vh;
-  left: 24.4vh;  
-}
 .display{ //100 x 75 - 900x900
   position: absolute;
   width: $width * (100/900);
@@ -214,7 +204,7 @@ $degrees: 0deg;
   //max-width: $max-width * (180/900);
   //max-height: $max-height * (90/900);
   top: 50vh;
-  left: 35vh;
+  left: 36vh;
 }
 
 /* Hide default HTML checkbox */

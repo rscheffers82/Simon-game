@@ -97,15 +97,6 @@ img {
   transform: rotate(0deg);
   z-index: 2; }
 
-.simon-part-middle {
-  position: absolute;
-  width: 31.11111vw;
-  height: 31.11111vw;
-  max-height: 31.11111vh;
-  max-width: 31.11111vh;
-  top: 24.35vh;
-  left: 24.4vh; }
-
 .display {
   position: absolute;
   width: 8.88889vw;
@@ -177,7 +168,7 @@ img {
 .switch {
   position: absolute;
   top: 50vh;
-  left: 35vh; }
+  left: 36vh; }
 
 /* Hide default HTML checkbox */
 .switch input {

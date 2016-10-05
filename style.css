@@ -1,4 +1,9 @@
-/* Stylesheet for ... App */
+/*
+/  Font credits for Sizenko Alexander
+/  The fonts Digital-7
+/  http://www.styleseven.com
+*/
+/* Stylesheet for ... Simon Game */
 body {
   background: #fafafc;
   color: black;
@@ -97,18 +102,28 @@ img {
   transform: rotate(0deg);
   z-index: 2; }
 
+@font-face {
+  font-family: 'digital-7';
+  src: url("font/digital-7.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
 .display {
   position: absolute;
-  width: 8.88889vw;
-  height: 6.66667vw;
-  max-width: 8.88889vh;
-  max-height: 6.66667vh;
-  background-color: red;
-  border: 0.04em solid #000000;
-  border-radius: 5px;
+  width: 8.44444vw;
+  height: 5.77778vw;
+  max-width: 8.44444vh;
+  max-height: 5.77778vh;
+  background-color: #32050C;
+  border: 0.04em solid #222223;
+  border-radius: 0.3em;
   top: 39vh;
   left: 27.5vh;
-  font-size: 2em; }
+  font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  letter-spacing: 0.2em;
+  color: #DC0D29;
+  padding-left: 0.15em; }
 
 #start {
   position: absolute;
@@ -119,7 +134,7 @@ img {
   border: 0.04em solid #000000;
   background-color: red;
   border-radius: 50%;
-  top: 41vh;
+  top: 40.1vh;
   left: 39vh; }
 
 #strict {
@@ -131,44 +146,40 @@ img {
   border: 0.04em solid #000000;
   background-color: yellow;
   border-radius: 50%;
-  top: 41vh;
+  top: 40.1vh;
   left: 46vh; }
 
 .count {
-  font-size: 2vh;
-  /* This controls the size. */
   position: absolute;
-  width: 3.55556vw;
-  height: 3.55556vw;
-  max-width: 3.55556vh;
-  max-height: 3.55556vh;
-  top: 46vh;
-  left: 29vh; }
+  top: 45.5vh;
+  left: 28.3vh; }
 
 .start-txt {
   position: absolute;
-  width: 3.55556vw;
-  height: 3.55556vw;
-  max-width: 3.55556vh;
-  max-height: 3.55556vh;
-  top: 46vh;
-  left: 37.5vh; }
+  top: 45.5vh;
+  left: 37.0vh; }
 
 .strict-txt {
   position: absolute;
-  width: 3.55556vw;
-  height: 3.55556vw;
-  max-width: 3.55556vh;
-  max-height: 3.55556vh;
-  top: 46vh;
-  left: 45vh; }
+  top: 45.5vh;
+  left: 44.5vh; }
 
 /* === [ ON/OFF button ] === */
+.on-text {
+  position: absolute;
+  top: 49.6vh;
+  left: 33.5vh; }
+
+.off-text {
+  position: absolute;
+  top: 49.6vh;
+  left: 43.7vh; }
+
 /* The switch - the box around the slider */
 .switch {
   position: absolute;
-  top: 50vh;
-  left: 36vh; }
+  top: 49.5vh;
+  left: 37vh; }
 
 /* Hide default HTML checkbox */
 .switch input {
@@ -180,42 +191,34 @@ input {
 /* The slider */
 .slider {
   position: absolute;
-  width: 8vw;
+  width: 6.22222vw;
   height: 3.11111vw;
-  max-width: 8vh;
+  max-width: 6.22222vh;
   max-height: 3.11111vh;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   cursor: pointer;
-  background-color: #4d4d4d;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  background-color: #272928; }
 
 .slider:before {
   position: absolute;
   content: "";
-  width: 5.33333vw;
+  width: 3.11111vw;
   height: 3.11111vw;
-  max-width: 5.33333vh;
+  max-width: 3.11111vh;
   max-height: 3.11111vh;
   left: 0;
   top: 0;
   background-color: red;
-  -webkit-transition: .4s;
-  transition: .4s; }
-
-input:checked + .slider {
-  background-color: #2196F3; }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3; }
+  -webkit-transition: .1s;
+  transition: .1s; }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(0.88889vh);
-  -ms-transform: translateX(0.88889vh);
-  transform: translateX(2.66667vh); }
+  -webkit-transform: translateX(3.11111vh);
+  -ms-transform: translateX(3.11111vh);
+  transform: translateX(3.11111vh); }
 
 /* DEBUG */
 .border {

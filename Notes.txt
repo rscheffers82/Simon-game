@@ -51,9 +51,12 @@ click-top-left
 	
 
 === { To-do list } ===
-- Which technique to use, full image, parts, polygon points
-- issue to figure out, resizing creates problems. vh/vw.
+- correct styling of the LCD
+- correct styling of the buttons
+- add resize style into javascript resize json object
+- write out game logic
 
+- add click event to the app
 
 - copy all code to codepen
 - check cross browser compatibility

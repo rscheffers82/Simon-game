@@ -1,4 +1,11 @@
-/* Stylesheet for ... App */
+/*
+/  Font credits for Sizenko Alexander
+/  The fonts Digital-7
+/  http://www.styleseven.com
+*/
+
+
+/* Stylesheet for ... Simon Game */
 
 // vars
 $main-blue: #363E84;
@@ -119,22 +126,31 @@ $degrees: 0deg;
   z-index: 2;
 }
 
-.display{ //100 x 75 - 900x900
-  position: absolute;
-  width: $width * (100/900);
-  height: $height * (75/900);
-  max-width: $max-width * (100/900);
-  max-height: $max-height * (75/900);
-  background-color: red;
-  border: 0.04em solid #000000;
-  border-radius: 5px;
-  top: 39vh;
-  left: 27.5vh;
-  font-size: 2em;
+@font-face {
+ font-family: 'digital-7';
+ src: url('font/digital-7.ttf');
+ font-weight: normal;
+ font-style: normal;
 }
 
-#on-off{
 
+
+.display{ //100 x 75 - 900x900
+  position: absolute;
+  width: $width * (95/900);
+  height: $height * (65/900);
+  max-width: $max-width * (95/900);
+  max-height: $max-height * (65/900);
+  background-color: #32050C;
+  border: 0.04em solid #222223;
+  border-radius: 0.3em;
+  top: 39vh;
+  left: 27.5vh;
+  font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  letter-spacing: 0.2em;
+  color: #DC0D29; // used for the letters
+  padding-left: 0.15em;
 }
 
 #start{
@@ -146,7 +162,7 @@ $degrees: 0deg;
   border: 0.04em solid #000000;
   background-color: red;
   border-radius: 50%;
-  top: 41vh;
+  top: 40.1vh;
   left: 39vh;
 }
 #strict{
@@ -158,103 +174,85 @@ $degrees: 0deg;
   border: 0.04em solid #000000;
   background-color: yellow;
   border-radius: 50%;
-  top: 41vh;
+  top: 40.1vh;
   left: 46vh;
 }
 
 .count{
-  font-size: 2vh; /* This controls the size. */ 
   position: absolute;
-  width: $width * (40/900);
-  height: $height * (40/900);
-  max-width: $max-width * (40/900);
-  max-height: $max-height * (40/900);
-  top: 46vh;
-  left: 29vh;  
+  top: 45.5vh;
+  left: 28.3vh;  
 }
 
 .start-txt{
-  //font-size: 2vh; /* This controls the size. */ 
   position: absolute;
-  width: $width * (40/900);
-  height: $height * (40/900);
-  max-width: $max-width * (40/900);
-  max-height: $max-height * (40/900);
-  top: 46vh;
-  left: 37.5vh;
+  top: 45.5vh;
+  left: 37.0vh;
 }
 
 .strict-txt{
-  //font-size: 2vh; /* This controls the size. */ 
   position: absolute;
-  width: $width * (40/900);
-  height: $height * (40/900);
-  max-width: $max-width * (40/900);
-  max-height: $max-height * (40/900);
-  top: 46vh;
-  left: 45vh;  
+  top: 45.5vh;
+  left: 44.5vh;  
 }
 
 /* === [ ON/OFF button ] === */
+
+.on-text{
+  position: absolute;
+  top: 49.6vh;
+  left: 33.5vh;
+}
+.off-text{
+  position: absolute;
+  top: 49.6vh;
+  left: 43.7vh;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: absolute;
-  //width: $width * (180/900);
-  //height: $height * (90/900);
-  //max-width: $max-width * (180/900);
-  //max-height: $max-height * (90/900);
-  top: 50vh;
-  left: 36vh;
+  top: 49.5vh;
+  left: 37vh;
 }
 
 /* Hide default HTML checkbox */
 .switch input {display:none;}
-
 input {display:none;}
 
 /* The slider */
-.slider {         // casing for the switch
+.slider {         // box for the switch
   position: absolute;
-  width: $width * (90/900);
+  width: $width * (70/900);
   height: $height * (35/900);
-  max-width: $max-width * (90/900);
+  max-width: $max-width * (70/900);
   max-height: $max-height * (35/900);
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   cursor: pointer;
-  background-color: #4d4d4d;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #272928;
 }
 
 .slider:before {    // inner switch
   position: absolute;
   content: "";
-  width: $width * (60/900);
+  width: $width * (35/900);
   height: $height * (35/900);
-  max-width: $max-width * (60/900);
+  max-width: $max-width * (35/900);
   max-height: $max-height * (35/900);
   left: 0;
   top: 0;
   background-color: red;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  -webkit-transition: .1s;
+  transition: .1s;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX( $max-width * (10/900) );
-  -ms-transform: translateX( $max-width * (10/900) );
-  transform: translateX( $max-width * (30/900) );
+  -webkit-transform: translateX( $max-width * (35/900) );
+  -ms-transform: translateX( $max-width * (35/900) );
+  transform: translateX( $max-width * (35/900) );
 }
 
 /* DEBUG */

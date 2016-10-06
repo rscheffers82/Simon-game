@@ -202,6 +202,7 @@ input {
   cursor: pointer;
   background-color: #272928; }
 
+.slider2:before,
 .slider:before {
   position: absolute;
   content: "";
@@ -211,15 +212,21 @@ input {
   max-height: 3.11111vh;
   left: 0;
   top: 0;
-  background-color: red;
+  background-color: #DC2525;
+  border: 2px solid #852424;
   -webkit-transition: .1s;
   transition: .1s; }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(3.11111vh);
-  -ms-transform: translateX(3.11111vh);
-  transform: translateX(3.11111vh); }
+  -webkit-transform: translateX(3.2vh);
+  -ms-transform: translateX(3.2vh);
+  transform: translateX(3.2vh); }
+
+input:checked + .slider2:before {
+  -webkit-transform: translateX(3.2vw);
+  -ms-transform: translateX(3.2vw);
+  transform: translateX(3.2vw); }
 
 /* DEBUG */
 .border {
-  border: 5px solid #222223; }
+  border: 5px solid #fafafc; }

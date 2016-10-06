@@ -233,6 +233,7 @@ input {display:none;}
   background-color: #272928;
 }
 
+.slider2:before,
 .slider:before {    // inner switch
   position: absolute;
   content: "";
@@ -242,18 +243,27 @@ input {display:none;}
   max-height: $max-height * (35/900);
   left: 0;
   top: 0;
-  background-color: red;
+  background-color: #DC2525;
+  border: 2px solid #852424;
   -webkit-transition: .1s;
   transition: .1s;
+  //border: 1px solid #fafafc;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX( $max-width * (35/900) );
-  -ms-transform: translateX( $max-width * (35/900) );
-  transform: translateX( $max-width * (35/900) );
+  -webkit-transform: translateX( $max-width * (36/900) );
+  -ms-transform: translateX( $max-width * (36/900) );
+  transform: translateX( $max-width * (36/900) );
+}
+
+input:checked + .slider2:before {   // needed because of the resize, this class is added when the height is larger than the width
+  -webkit-transform: translateX( 80vw * (36/900) );
+  -ms-transform: translateX( 80vw * (36/900) );
+  transform: translateX( 80vw * (36/900) );
 }
 
 /* DEBUG */
 .border{
-  border: 5px solid #222223;
+  border: 5px solid #fafafc;
 }
+

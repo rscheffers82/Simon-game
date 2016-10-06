@@ -85,6 +85,9 @@ click events
 				- strict OFF, error, start sequence from the start
 		No input is received after 5 seconds, display the sequence
 		wait for input
-		
+
 	game reset (start pressed while playing)
 		same as game start
+
+=== KNOWN ISSUES ===
+Mouse down not working when out of the part

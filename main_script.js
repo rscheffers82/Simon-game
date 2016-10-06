@@ -32,10 +32,16 @@ var colorClicked = function(input){
 	if (!SimonON) return;
 	if (!gameInProgress) return;
 	display(input);
+	highlight(input);
 }
 
 var display = function(output){
 	$('.display').text(output);
+}
+
+var highlight = function(button){
+	$('.simon-part-click').css('z-index', '10');
+
 }
 
 //     click event for input     \\
@@ -54,15 +60,34 @@ $('.simon').on('click', function(e){
 		case 'strict' :
 			setStrict();
 			break;
-		case '0'      :
-		case '1'      :
-		case '2'      :
-		case '3'      : 
-			colorClicked(pressed); 
-			break;
 	}
-//	console.log(e.target.checked);
-//	console.log(e.target.id);
+});
+
+$('.part').mousedown(function(e){
+	display('down');
+	var pressed = e.target.id;
+	console.log(pressed);
+	switch(pressed){
+		case '0':
+			$('#simon-part-click').addClass('top-left');
+			break;
+		case '1':
+			$('#simon-part-click').addClass('top-right');
+			break;
+		case '2':
+			$('#simon-part-click').addClass('bottom-right');
+			break;
+		case '3':
+			$('#simon-part-click').addClass('bottom-left');
+			break;//  transform: rotate($degrees);
+	}
+	$('#simon-part-click').css('z-index', '10');
+});
+
+$('.part').mouseup(function(e){
+	display('up');
+	$('#simon-part-click').css('z-index', '-10');
+	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 });
 
 //     Resize event and function     \\

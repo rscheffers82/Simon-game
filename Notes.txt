@@ -54,7 +54,8 @@ v correct styling of the LCD
 v correct styling of the buttons
 v add resize style into javascript resize json object
 v how to read the value of the switch
-- write out game logic
+v write out game logic
+v basic click functionality
 
 - add click event to the app
 
@@ -90,4 +91,4 @@ click events
 		same as game start
 
 === KNOWN ISSUES ===
-Mouse down not working when out of the part
+Mouse down not working when moved out of the part, dragging

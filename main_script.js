@@ -5,21 +5,26 @@ var SimonON = false;
 var gameInProgress = false;
 var strictON = false;
 var sequence = [];
-var disableButtons;
+var clicked = ['top-left', 'top-right', 
+			'bottom-right', 'bottom-left'];
 
 var switchON = function(on){	
-	SimonON = on;				// true or false
-	if (on){
-		display('--');
-	} else{
-		display('');
-	}
+	SimonON = on;							// true or false
+	display( on === true ? '--' : '' );
+	if (!on) reset();
+}
+
+var reset = function(){
+	$('#simon-part-click').css('z-index', '-10');
+	gameInProgress = false;
+	equence = [];
 }
 
 var startSimon = function(){			
 	if (!SimonON) return;
 	gameInProgress = true;
 	display('SS');
+	highlight('1');
 }
 
 var setStrict = function(){
@@ -40,7 +45,12 @@ var display = function(output){
 }
 
 var highlight = function(button){
-	$('.simon-part-click').css('z-index', '10');
+	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
+	$('#simon-part-click').addClass(clicked[button]);
+	$('#simon-part-click').css('z-index', '10');
+//timer event
+//	$('#simon-part-click').removeClass(clicked[button]);
+//	$('#simon-part-click').css('z-index', '-10');
 
 }
 
@@ -64,30 +74,21 @@ $('.simon').on('click', function(e){
 });
 
 $('.part').mousedown(function(e){
-	display('down');
+	//display('down');
+	if (!SimonON) return;
+	if (!gameInProgress) return;	
 	var pressed = e.target.id;
-	console.log(pressed);
-	switch(pressed){
-		case '0':
-			$('#simon-part-click').addClass('top-left');
-			break;
-		case '1':
-			$('#simon-part-click').addClass('top-right');
-			break;
-		case '2':
-			$('#simon-part-click').addClass('bottom-right');
-			break;
-		case '3':
-			$('#simon-part-click').addClass('bottom-left');
-			break;//  transform: rotate($degrees);
-	}
+	
+	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
+	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
 });
 
 $('.part').mouseup(function(e){
-	display('up');
+	//display('up');
+	if (!SimonON) return;
+	if (!gameInProgress) return;
 	$('#simon-part-click').css('z-index', '-10');
-	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 });
 
 //     Resize event and function     \\

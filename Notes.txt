@@ -46,14 +46,14 @@ top-left
 top-right
 bottom-left
 bottom-right
-middle
 click-top-left
 	
 
 === { To-do list } ===
-- correct styling of the LCD
-- correct styling of the buttons
-- add resize style into javascript resize json object
+v correct styling of the LCD
+v correct styling of the buttons
+v add resize style into javascript resize json object
+v how to read the value of the switch
 - write out game logic
 
 - add click event to the app
@@ -71,27 +71,20 @@ http://css3.bradshawenterprises.com/cfimg/
 fancy bottom footer gradient
 http://www.colorzilla.com/gradient-editor
 
-Toggle button
-http://www.w3schools.com/howto/howto_css_switch.asp
-
-Digits in CSS
-http://thisisbensblog.com/creating-a-digital-watch-in-pure-css/
-
-Resize issue
-http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onresize_window
-
-Inner/outer height, width, combine with resize.
-http://www.w3schools.com/jsref/prop_win_outerheight.asp
-http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_innerheight
-
-Combined here's how it works, implement and change CSS based on the resize. vw or vh
-
-window.addEventListener("resize", myFunction);
-
-function myFunction() {
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    document.getElementById("demo").innerHTML = "Width: " + w + "<br>Height: " + h;
-if (w > h) console.log('Width = larger');
-else console.log('height = larger');
-}
+click events
+	OFF, nothing works except the ON button
+	ON, start and strict work
+	game start
+		generate sequence
+		show step in the sequence in the display
+		display the first one + sound
+		wait for input, + sound
+			correct input, next step in the sequence
+			incorrect input
+				- strict ON, reset + error on the display !!
+				- strict OFF, error, start sequence from the start
+		No input is received after 5 seconds, display the sequence
+		wait for input
+		
+	game reset (start pressed while playing)
+		same as game start

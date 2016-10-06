@@ -1,19 +1,76 @@
 // Javascript
-$( document ).ready(function() {
-	correctSize();
+
+//     Global vars     \\
+var SimonON = false;
+var gameInProgress = false;
+var strictON = false;
+var sequence = [];
+var disableButtons;
+
+var switchON = function(on){	
+	SimonON = on;				// true or false
+	if (on){
+		display('--');
+	} else{
+		display('');
+	}
+}
+
+var startSimon = function(){			
+	if (!SimonON) return;
+	gameInProgress = true;
+	display('SS');
+}
+
+var setStrict = function(){
+	if (!SimonON) return;
+	strictON = strictON === true ? false : true;
+	// set / unset indicator
+}
+
+var colorClicked = function(input){
+	if (!SimonON) return;
+	if (!gameInProgress) return;
+	display(input);
+}
+
+var display = function(output){
+	$('.display').text(output);
+}
+
+//     click event for input     \\
+$('.simon').on('click', function(e){
+	var pressed = e.target.id;
+	if (!pressed) return;			// don't execute on invalid click events
+	console.log(pressed);
+
+	switch(pressed){
+		case 'on-off' : 
+			switchON(e.target.checked);
+			break;
+		case 'start'  :
+			startSimon();
+			break;
+		case 'strict' :
+			setStrict();
+			break;
+		case '0'      :
+		case '1'      :
+		case '2'      :
+		case '3'      : 
+			colorClicked(pressed); 
+			break;
+	}
+//	console.log(e.target.checked);
+//	console.log(e.target.id);
 });
 
+//     Resize event and function     \\
 window.addEventListener("resize", correctSize);
 
 function correctSize() {
     var w = window.innerWidth;
     var h = window.innerHeight;
-    //document.getElementById( document ).innerHTML = "Width: " + w + "<br>Height: " + h;
-//	var width = 80vw;
-//	var height = 80vw;
-//	var maxHeight = 80vh;
-//	var maxWidth = 80vh;
-
 
 	css_values = [{
 		"name": "body",
@@ -67,20 +124,20 @@ function correctSize() {
 		"name": ".strict-txt",
 		"property": "left",
 		"value": "44.5"
-	},{		
-		"name": ".on-text",
+	},{
+		"name": ".off-text",
 		"property": "top",
 		"value": "49.6" 
 	},{
-		"name": ".on-text",
+		"name": ".off-text",
 		"property": "left",
-		"value": "33.5" 	
-	},{		
-		"name": ".off-text",
+		"value": "32.4" 	
+	},{	
+		"name": ".on-text",
 		"property": "top",
 		"value": "49.6" 
 	},{
-		"name": ".off-text",
+		"name": ".on-text",
 		"property": "left",
 		"value": "43.7" 	
 	},{		
@@ -114,7 +171,7 @@ input:checked + .slider:before {
 	});
 }
 
-$('.simon').on('click', function(e){
-
-	console.log(e.target.id);
+//     Ensure the game is correctly displayed     \\
+$( document ).ready(function() {
+	correctSize();
 });

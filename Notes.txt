@@ -56,10 +56,11 @@ v add resize style into javascript resize json object
 v how to read the value of the switch
 v write out game logic
 v basic click functionality
+v add click event to the app
+- game handling (smart)
 
-- add click event to the app
-
-- copy all code to codepen
+- fix footer
+- create readme file
 - check cross browser compatibility
 
 === { Build notes } ===

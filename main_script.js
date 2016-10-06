@@ -23,8 +23,14 @@ var reset = function(){
 var startSimon = function(){			
 	if (!SimonON) return;
 	gameInProgress = true;
-	display('SS');
-	highlight('1');
+	display('01');
+	sequence = setSequence();
+	highlight(sequence[0]);
+}
+
+var setSequence = function(){
+	var arr = [0,1,2,3,2,1,0,1,2,3,2,1,0,1,2,3,2,1,0];
+	return arr;
 }
 
 var setStrict = function(){
@@ -49,9 +55,11 @@ var highlight = function(button){
 	$('#simon-part-click').addClass(clicked[button]);
 	$('#simon-part-click').css('z-index', '10');
 //timer event
-//	$('#simon-part-click').removeClass(clicked[button]);
-//	$('#simon-part-click').css('z-index', '-10');
-
+	var lightUp = window.setTimeout(dim, 600);
+	function dim(){
+		$('#simon-part-click').removeClass(clicked[button]);
+		$('#simon-part-click').css('z-index', '-10');
+	}
 }
 
 //     click event for input     \\

@@ -93,3 +93,13 @@ click events
 
 === KNOWN ISSUES ===
 Mouse down not working when moved out of the part, dragging
+
+main loop
+
+click on start triggers it
+	if game in progress, reset
+	show sequence on the display and in clicks
+	wait for 5 seconds, 
+		> no input, display error, reset
+		> input, count+, check sequence[count], end?
+	

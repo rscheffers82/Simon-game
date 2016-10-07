@@ -5,7 +5,7 @@ var SimonON = false;							// Is the game switched on or off, true or false
 var gameInProgress = false;						// Has start been pressed
 var strictON = false;							// Strict mode, no mistake is allowed
 var sequence = [];								// Sequence of button presses unique to each game
-var seqPos = 4;										// At what position is the game in the sequence
+var seqPos = 10;								// At what position is the game in the sequence
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
 
@@ -25,12 +25,12 @@ var startSimon = function(){
 	if (!SimonON) return;
 	gameInProgress = true;
 	sequence = setSequence();
-	seqPos = 0;
-	//gameON();
+	//seqPos = 0;
+	gameON();
 }
 var gameON = function(){
-	display(1);
-	highlight(sequence[0], 600);
+	display(seqPos);
+	highlight(sequence[0], 1000);
 }
 
 var setSequence = function(){
@@ -76,7 +76,10 @@ var highlight = function(button, duration, tempSeqPos){
 		$('img').css('pointer-events', 'auto');
 		tempSeqPos = tempSeqPos === undefined ? 1 : tempSeqPos += 1;
 		console.log('tempSeqPos(lightUp): ', tempSeqPos);
-		highlight(sequence[tempSeqPos], duration, tempSeqPos);
+		var delay = window.setTimeout(next, 250)
+		function next(){
+			highlight(sequence[tempSeqPos], duration, tempSeqPos);
+		}
 	}
 }
 

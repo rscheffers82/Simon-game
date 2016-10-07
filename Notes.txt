@@ -57,7 +57,16 @@ v how to read the value of the switch
 v write out game logic
 v basic click functionality
 v add click event to the app
-- game handling (smart)
+v game handling (smart)
+v wait between button display, now they are pressed imidiately after another
+- write input checking part
+	- wrong input on display XX
+	- check strict, stop or show sequence again
+	- Correct sequence display additional step function
+- write setSequence function, random
+- click start while in the game, reset and show a new sequence
+- add sounds
+- victory @ 20 steps
 
 - fix footer
 - create readme file

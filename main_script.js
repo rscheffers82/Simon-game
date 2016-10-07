@@ -25,7 +25,7 @@ var startSimon = function(){
 	if (!SimonON) return;
 	gameInProgress = true;
 	sequence = setSequence();
-	//seqPos = 0;
+	seqPos = 0;
 	//gameON();
 }
 var gameON = function(){
@@ -59,8 +59,11 @@ var highlight = function(button, duration, tempSeqPos){
 	console.log('tempSeqPos(highlight): ', tempSeqPos);
 	console.log('seqPos(highlight): ', seqPos);	
 	console.log(tempSeqPos >= seqPos);
-	if (tempSeqPos >= seqPos || !SimonON) return;
-
+	if (tempSeqPos >= seqPos || !SimonON) {
+		$('#simon-part').css('pointer-events', 'auto');
+		return;
+	}
+	
 	$('img').css('pointer-events', 'none');
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[button]);
@@ -75,8 +78,6 @@ var highlight = function(button, duration, tempSeqPos){
 		console.log('tempSeqPos(lightUp): ', tempSeqPos);
 		highlight(sequence[tempSeqPos], duration, tempSeqPos);
 	}
-	//when done
-	// 	$('#simon-part').css('pointer-events', 'auto');
 }
 
 //     click event for input     \\
@@ -113,7 +114,7 @@ $('.part').mouseup(function(e){
 	//display('up');
 	if (!SimonON) return;
 	if (!gameInProgress) return;
-	$('#simon-part-click part').css('z-index', '-10');
+	$('#simon-part-click').css('z-index', '-10');
 });
 
 //     Resize event and function     \\

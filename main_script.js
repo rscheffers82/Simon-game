@@ -11,27 +11,30 @@ var clicked = ['top-left', 'top-right',
 
 
 var Game = function(){
-	this.sequence = [0,1,2,3];
+	this.sequence = [];
 	this.currentPos = 0;
 	this.clickPos = 0;	
 }
 
-var x = new Game();
-
 Game.prototype = {
+	reset: function(){
+		this.sequence = [];
+		this.currentPos = 0;
+		this.clickPos = 0;	
+	}
+	
 	checkInput: function(part){
 		// check for correct input
 
 		// check is the currentPos in the game is reached
 			// not, increase the clickPos
-			clickPos++;
+			this.clickPos++;
 			// yes, 		// clickPos = currentPos,
-		display(clickPos);
-
-
+		display(this.clickPos);
 	}
 }
 
+var g = new Game();
 
 var switchON = function(on){	
 	SimonON = on;							// true or false
@@ -127,7 +130,7 @@ $('.part').mousedown(function(e){
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
-	game.checkInput(pressed);
+	g.checkInput(pressed);
 });
 
 $('.part').mouseup(function(e){

@@ -3,16 +3,14 @@
 //     Global vars     \\
 var SimonON = false;							// Is the game switched on or off, true or false
 var gameInProgress = false;						// Has start been pressed
-var strictON = false;							// Strict mode, no mistake is allowed
-var sequence = [];								// Sequence of button presses unique to each game
-var currentPos = 0;									// At what position is the game in the sequence
+var strictON = false;							// Strict mode, no mistake is allowed			
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
 
 
 var Game = function(){
-	this.sequence = [];
-	this.currentPos = 0;
+	this.sequence = [];			// g.sequence of button presses unique to each game
+	this.currentPos = 0;		// At what position is the game in the g.sequence
 	this.clickPos = 0;	
 }
 
@@ -21,45 +19,44 @@ Game.prototype = {
 		this.sequence = [];
 		this.currentPos = 0;
 		this.clickPos = 0;	
-	}
-	
+	},
+
+	setSequence: function(){
+		this.sequence = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
+	},
+
 	checkInput: function(part){
 		// check for correct input
 
-		// check is the currentPos in the game is reached
+		// check is the g.currentPos in the game is reached
 			// not, increase the clickPos
 			this.clickPos++;
-			// yes, 		// clickPos = currentPos,
+			// yes, 		// clickPos = g.currentPos,
 		display(this.clickPos);
 	}
 }
 
 var g = new Game();
 
-var switchON = function(on){	
+var switchON = function(on){				// on/off button is pressed
 	SimonON = on;							// true or false
 	display( on === true ? '--' : '' );
 	if (!on) reset();
 }
 
-var reset = function(){
+var reset = function(){ 				// reset button is pressed
 	$('#simon-part-click').css('z-index', '-10');
 	gameInProgress = false;
-	sequence = [];
+	g.reset();
 }
 
-var startSimon = function(){			
+var startSimon = function(){			// start button is pressed
 	if (!SimonON) return;
 	gameInProgress = true;
-	sequence = setSequence();
-	currentPos = 3;
-	display(currentPos);
-	highlight(sequence[0], 1000);
-}
-
-var setSequence = function(){
-	var arr = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
-	return arr;
+	g.setSequence();
+	g.currentPos = 3;
+	display(g.currentPos);
+	highlight(g.sequence[0], 1000);
 }
 
 var setStrict = function(){
@@ -73,10 +70,10 @@ var display = function(output){
 }
 
 var highlight = function(button, duration, tempSeqPos){
-	console.log('tempSeqPos(highlight): ', tempSeqPos);
-	console.log('currentPos(highlight): ', currentPos);	
-	console.log(tempSeqPos >= currentPos);
-	if (tempSeqPos >= currentPos || !SimonON) {
+	//console.log('tempSeqPos(highlight): ', tempSeqPos);
+	//console.log('g.currentPos(highlight): ', g.currentPos);	
+	//console.log(tempSeqPos >= g.currentPos);
+	if (tempSeqPos >= g.currentPos || !SimonON) {
 		$('#simon-part').css('pointer-events', 'auto');
 		return;
 	}
@@ -97,7 +94,7 @@ var highlight = function(button, duration, tempSeqPos){
 
 		var delay = window.setTimeout(next, 250)
 		function next(){
-			highlight(sequence[tempSeqPos], duration, tempSeqPos);
+			highlight(g.sequence[tempSeqPos], duration, tempSeqPos);
 		}
 	}
 }

@@ -68,7 +68,7 @@ v wait between button display, now they are pressed imidiately after another
 - add sounds
 - victory @ 20 steps
 
-- fix inner part accepting clicks, overlay onder de buttons of inner
+- fix inner part accepting clicks, overlay onder de buttons of inner, no click / pointer
 - fix footer
 - create readme file
 - check cross browser compatibility
@@ -120,6 +120,6 @@ check loop in the input part
 needed vars
 - sequence 				What is the entire sequence
 - currentPos 			At what position are we currently? start = 0, >= 19 won
-- inputPos
+- clickPos
 
 countSteps

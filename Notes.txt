@@ -59,14 +59,17 @@ v basic click functionality
 v add click event to the app
 v game handling (smart)
 v wait between button display, now they are pressed imidiately after another
-- write input checking part
-	- wrong input on display XX
-	- check strict, stop or show sequence again
-	- Correct sequence display additional step function
+v write input checking part
+	v wrong input on display XX
+	v check strict, stop or show sequence again
+	v Correct sequence display additional step function
 - write setSequence function, random
-- click start while in the game, reset and show a new sequence
-- add sounds
+v click start while in the game, reset and show a new sequence
 - victory @ 20 steps
+- add proper delay
+- add strict LED
+- shadow buttons
+- add sounds
 
 - fix inner part accepting clicks, overlay onder de buttons of inner, no click / pointer
 - fix footer

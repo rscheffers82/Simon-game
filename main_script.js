@@ -6,7 +6,7 @@ var gameInProgress = false;						// Has start been pressed
 var strictON = false;							// Strict mode, no mistake is allowed			
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
-
+var highlightTime = 100;
 
 var Game = function(){
 	this.sequence = [];			// g.sequence of button presses unique to each game
@@ -18,7 +18,9 @@ Game.prototype = {
 	reset: function(){
 		this.sequence = [];
 		this.currentPos = 0;
-		this.clickPos = 0;	
+		this.clickPos = 0;
+		this.win = 19; 				// When is the game won, total steps starting at 0
+		display(this.currentPos + 1);
 	},
 
 	setSequence: function(){
@@ -27,12 +29,46 @@ Game.prototype = {
 
 	checkInput: function(part){
 		// check for correct input
-
-		// check is the g.currentPos in the game is reached
-			// not, increase the clickPos
+		console.log('part: ', part);
+		console.log('What should be clicked: ', this.sequence[this.clickPos]);
+		console.log('currentPos: ',this.currentPos);
+		console.log('clickPos: ', this.clickPos);
+		console.log('---------------------------');
+		if ( part !== this.sequence[this.clickPos] ) {
+			this.incorrect();
+			return;
+		}
+		
+		if (this.clickPos === this.win){ 				// the game is won
+			console.log('won');
+			return;
+		} 
+		
+		if( this.clickPos >= this.currentPos ){			// show the next sequence
+			this.clickPos = 0;
+			this.currentPos++;
+			display(this.currentPos + 1);
+			highlight(this.sequence[0], highlightTime);
+		}
+		else {											// correct part clicked, wait for the next
 			this.clickPos++;
-			// yes, 		// clickPos = g.currentPos,
-		display(this.clickPos);
+		} 
+
+	},
+	incorrect: function(){
+		display('XX');
+		// delay in showing the below + flashing XX's display('message', flash=true)?
+		if (strictON){											// start over
+			this.reset();
+			this.setSequence();
+			highlight(this.sequence[0], highlightTime);			
+		} else {												// show the sequence again
+			this.clickPos = 0;
+			highlight(this.sequence[0], highlightTime);
+		}
+	},
+	nextPos: function(){
+
 	}
 }
 
@@ -53,10 +89,9 @@ var reset = function(){ 				// reset button is pressed
 var startSimon = function(){			// start button is pressed
 	if (!SimonON) return;
 	gameInProgress = true;
+	g.reset();
 	g.setSequence();
-	g.currentPos = 3;
-	display(g.currentPos);
-	highlight(g.sequence[0], 1000);
+	highlight(g.sequence[0], highlightTime);
 }
 
 var setStrict = function(){
@@ -73,7 +108,7 @@ var highlight = function(button, duration, tempSeqPos){
 	//console.log('tempSeqPos(highlight): ', tempSeqPos);
 	//console.log('g.currentPos(highlight): ', g.currentPos);	
 	//console.log(tempSeqPos >= g.currentPos);
-	if (tempSeqPos >= g.currentPos || !SimonON) {
+	if (tempSeqPos > g.currentPos || !SimonON) {
 		$('#simon-part').css('pointer-events', 'auto');
 		return;
 	}
@@ -119,10 +154,10 @@ $('.simon').on('click', function(e){
 });
 
 $('.part').mousedown(function(e){
-	//display('down');
+	//console.log('part-down');
 	if (!SimonON) return;
 	if (!gameInProgress) return;	
-	var pressed = e.target.id;
+	var pressed = Number(e.target.id);
 	
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
@@ -130,7 +165,7 @@ $('.part').mousedown(function(e){
 	g.checkInput(pressed);
 });
 
-$('.part').mouseup(function(e){
+$('.part').mouseup(function(){
 	//display('up');
 	if (!SimonON) return;
 	if (!gameInProgress) return;

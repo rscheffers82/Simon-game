@@ -5,9 +5,33 @@ var SimonON = false;							// Is the game switched on or off, true or false
 var gameInProgress = false;						// Has start been pressed
 var strictON = false;							// Strict mode, no mistake is allowed
 var sequence = [];								// Sequence of button presses unique to each game
-var seqPos = 10;								// At what position is the game in the sequence
+var currentPos = 0;									// At what position is the game in the sequence
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
+
+
+var Game = function(){
+	this.sequence = [0,1,2,3];
+	this.currentPos = 0;
+	this.clickPos = 0;	
+}
+
+var x = new Game();
+
+Game.prototype = {
+	checkInput: function(part){
+		// check for correct input
+
+		// check is the currentPos in the game is reached
+			// not, increase the clickPos
+			clickPos++;
+			// yes, 		// clickPos = currentPos,
+		display(clickPos);
+
+
+	}
+}
+
 
 var switchON = function(on){	
 	SimonON = on;							// true or false
@@ -18,18 +42,15 @@ var switchON = function(on){
 var reset = function(){
 	$('#simon-part-click').css('z-index', '-10');
 	gameInProgress = false;
-	equence = [];
+	sequence = [];
 }
 
 var startSimon = function(){			
 	if (!SimonON) return;
 	gameInProgress = true;
 	sequence = setSequence();
-	//seqPos = 0;
-	gameON();
-}
-var gameON = function(){
-	display(seqPos);
+	currentPos = 3;
+	display(currentPos);
 	highlight(sequence[0], 1000);
 }
 
@@ -43,23 +64,16 @@ var setStrict = function(){
 	strictON = strictON === true ? false : true;
 	// set / unset indicator
 }
-/*
-var colorClicked = function(input){
-	if (!SimonON) return;
-	if (!gameInProgress) return;
-	display(input);
-	highlight(input, 600);
-}
-*/
+
 var display = function(output){
 	$('.display').text(output);
 }
 
 var highlight = function(button, duration, tempSeqPos){
 	console.log('tempSeqPos(highlight): ', tempSeqPos);
-	console.log('seqPos(highlight): ', seqPos);	
-	console.log(tempSeqPos >= seqPos);
-	if (tempSeqPos >= seqPos || !SimonON) {
+	console.log('currentPos(highlight): ', currentPos);	
+	console.log(tempSeqPos >= currentPos);
+	if (tempSeqPos >= currentPos || !SimonON) {
 		$('#simon-part').css('pointer-events', 'auto');
 		return;
 	}
@@ -68,14 +82,16 @@ var highlight = function(button, duration, tempSeqPos){
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[button]);
 	$('#simon-part-click').css('z-index', '10');
-//timer event
-	var lightUp = window.setTimeout(dim, duration);
+	
+	//timer event
+	window.setTimeout(dim, duration);
 	function dim(){
+
 		$('#simon-part-click').removeClass(clicked[button]);
 		$('#simon-part-click').css('z-index', '-10');
 		$('img').css('pointer-events', 'auto');
 		tempSeqPos = tempSeqPos === undefined ? 1 : tempSeqPos += 1;
-		console.log('tempSeqPos(lightUp): ', tempSeqPos);
+
 		var delay = window.setTimeout(next, 250)
 		function next(){
 			highlight(sequence[tempSeqPos], duration, tempSeqPos);
@@ -111,6 +127,7 @@ $('.part').mousedown(function(e){
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
+	game.checkInput(pressed);
 });
 
 $('.part').mouseup(function(e){

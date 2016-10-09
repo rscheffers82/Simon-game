@@ -63,9 +63,10 @@ v write input checking part
 	v wrong input on display XX
 	v check strict, stop or show sequence again
 	v Correct sequence display additional step function
-- write setSequence function, random
+v write setSequence function, random
 v click start while in the game, reset and show a new sequence
-- victory @ 20 steps
+v victory @ 20 steps
+- add flash display (for win and error)
 - add proper delay
 - add strict LED
 - shadow buttons

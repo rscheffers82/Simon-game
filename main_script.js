@@ -19,50 +19,28 @@ Game.prototype = {
 		this.sequence = [];
 		this.currentPos = 0;
 		this.clickPos = 0;
-		this.win = 19; 				// When is the game won, total steps starting at 0
+		this.win = 4; 				// When is the game won, total steps starting at 0
 		display(this.currentPos + 1);
 	},
 
-	setSequence: function(){
-		//this.sequence = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
-		/*
-		Generate a random pattern between 0 and 3
-		opposite, side, same
-		0 - side = 75 %
-			logic:
-			0 = 4 and 1
-			3 = 0 and 2
-
-			1 = 0 and 2
-			2 = 1 and 3
-
-
-		1 - opposite and same 25%
-		*/
-		this.sequence = [];
-		
+	setSequence: function(){	
 		var sides = [];
 		sides[0] = [3,1]; sides[1] = [0,2]; sides[2] = [1,3]; sides[3] = [0,2]; 
-		var opposite = [2, 3, 0, 1]; //opposite parts - 0=2, 1=3, 2=0, 3=1
-		var mainOption;
-		var choice;
-		var previous;
+		var opposite = [];
+		opposite[0] = [0,2]; opposite[1] = [1,3]; opposite[2] = [2,0]; opposite[3] = [3,1]; //opposite parts - 0=2, 1=3, 2=0, 3=1
+		var mainOption;		// choice between sides and same or opposite
+		var choice;			// 0 or 1, choose from the two sub-options
+		var previous;		
 		var part;
-		for (x = 0; x < 20; x++){
+		
+		for (x = 0; x <= this.win; x++){
 			mainOption = Math.floor(Math.random() * 100);
 			previous = this.sequence[x-1] !== undefined ? this.sequence[x-1] : Math.floor(Math.random() * 4);
-			//console.log(this.sequence);
-			if (x === 0) {
-				//console.log('previous: ', previous);
-				//console.log('sides[previous]: ', sides[previous]);
-			}
-			if ( mainOption <= 75 ){
-				choice = Math.floor(Math.random() * 2);
-				//console.log('choice: ', choice);
-				part = sides[previous][choice];
-			} else {
-				part = opposite[previous];
-			}
+			choice = Math.floor(Math.random() * 2);
+
+			if ( mainOption <= 50 ) part = sides[previous][choice];
+			else part = opposite[previous][choice];
+			
 			this.sequence.push( part );
 		}
 		console.log(this.sequence);
@@ -74,30 +52,40 @@ Game.prototype = {
 		//console.log('currentPos: ',this.currentPos);
 		//console.log('clickPos: ', this.clickPos);
 		//console.log('---------------------------');
-		if ( part !== this.sequence[this.clickPos] ) {
-			this.incorrect();
-			return;
-		}
-		
-		if (this.clickPos === this.win){ 				// the game is won
-			console.log('won');
-			return;
-		} 
-		
-		if( this.clickPos >= this.currentPos ){			// show the next sequence
+		if ( part !== this.sequence[this.clickPos] ) {	// incorrect input
+			console.log('1. checkInput - incorrect input');
+			display('XX');
+			var flash = 1;
+			var x = window.setTimeout(1000, xx);
+			console.log('x: ',x);
+			function xx(){
+				console.log('in next, flash: ', flash);
+				if ( flash <= 6 ){
+					flash%2 === 0 ? display('XX') : display('');
+					flash++;
+				}
+				else{
+					console.log('else');
+					this.incorrect();
+				}
+			}
+			
+			//return;
+		} else if (this.clickPos === this.win){ 				// the game is won
+			display(this.win);
+			startSimon();
+			//return;
+		} else if( this.clickPos >= this.currentPos ){			// show the next sequence
 			this.clickPos = 0;
 			this.currentPos++;
 			display(this.currentPos + 1);
 			highlight(this.sequence[0], highlightTime);
-		}
-		else {											// correct part clicked, wait for the next
+		} else {											// correct part clicked, wait for the next click
 			this.clickPos++;
 		} 
-
+		console.log('end of function');
 	},
 	incorrect: function(){
-		display('XX');
-		// delay in showing the below + flashing XX's display('message', flash=true)?
 		if (strictON){											// start over
 			this.reset();
 			this.setSequence();

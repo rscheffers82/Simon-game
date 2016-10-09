@@ -6,7 +6,7 @@ var gameInProgress = false;						// Has start been pressed
 var strictON = false;							// Strict mode, no mistake is allowed			
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
-var highlightTime = 100;
+var highlightTime = 400;
 
 var Game = function(){
 	this.sequence = [];			// g.sequence of button presses unique to each game
@@ -24,16 +24,56 @@ Game.prototype = {
 	},
 
 	setSequence: function(){
-		this.sequence = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
-	},
+		//this.sequence = [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
+		/*
+		Generate a random pattern between 0 and 3
+		opposite, side, same
+		0 - side = 75 %
+			logic:
+			0 = 4 and 1
+			3 = 0 and 2
 
+			1 = 0 and 2
+			2 = 1 and 3
+
+
+		1 - opposite and same 25%
+		*/
+		this.sequence = [];
+		
+		var sides = [];
+		sides[0] = [3,1]; sides[1] = [0,2]; sides[2] = [1,3]; sides[3] = [0,2]; 
+		var opposite = [2, 3, 0, 1]; //opposite parts - 0=2, 1=3, 2=0, 3=1
+		var mainOption;
+		var choice;
+		var previous;
+		var part;
+		for (x = 0; x < 20; x++){
+			mainOption = Math.floor(Math.random() * 100);
+			previous = this.sequence[x-1] !== undefined ? this.sequence[x-1] : Math.floor(Math.random() * 4);
+			//console.log(this.sequence);
+			if (x === 0) {
+				//console.log('previous: ', previous);
+				//console.log('sides[previous]: ', sides[previous]);
+			}
+			if ( mainOption <= 75 ){
+				choice = Math.floor(Math.random() * 2);
+				//console.log('choice: ', choice);
+				part = sides[previous][choice];
+			} else {
+				part = opposite[previous];
+			}
+			this.sequence.push( part );
+		}
+		console.log(this.sequence);
+	},
 	checkInput: function(part){
 		// check for correct input
-		console.log('part: ', part);
-		console.log('What should be clicked: ', this.sequence[this.clickPos]);
-		console.log('currentPos: ',this.currentPos);
-		console.log('clickPos: ', this.clickPos);
-		console.log('---------------------------');
+		//console.log('part: ', part);
+		//console.log('What should be clicked: ', this.sequence[this.clickPos]);
+		//console.log('currentPos: ',this.currentPos);
+		//console.log('clickPos: ', this.clickPos);
+		//console.log('---------------------------');
 		if ( part !== this.sequence[this.clickPos] ) {
 			this.incorrect();
 			return;
@@ -76,14 +116,12 @@ var g = new Game();
 
 var switchON = function(on){				// on/off button is pressed
 	SimonON = on;							// true or false
+	if (!on) {
+		$('#simon-part-click').css('z-index', '-10');
+		gameInProgress = false;	
+	}
+	else g.reset();
 	display( on === true ? '--' : '' );
-	if (!on) reset();
-}
-
-var reset = function(){ 				// reset button is pressed
-	$('#simon-part-click').css('z-index', '-10');
-	gameInProgress = false;
-	g.reset();
 }
 
 var startSimon = function(){			// start button is pressed

@@ -6,7 +6,7 @@ var gameInProgress = false;						// Has start been pressed
 var strictON = false;							// Strict mode, no mistake is allowed			
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
-var highlightTime = 400;
+var highlightTime = 800;
 
 var Game = function(){
 	this.sequence = [];			// g.sequence of button presses unique to each game
@@ -17,9 +17,9 @@ var Game = function(){
 Game.prototype = {
 	reset: function(){
 		this.sequence = [];
-		this.currentPos = 0;
-		this.clickPos = 0;
-		this.win = 4; 				// When is the game won, total steps starting at 0
+		this.currentPos = 0;		// current step in the game
+		this.clickPos = 0;			// clicked step in currentPos
+		this.win = 3; 				// When is the game won, total steps starting at 0
 		display(this.currentPos + 1);
 	},
 
@@ -53,37 +53,52 @@ Game.prototype = {
 		//console.log('clickPos: ', this.clickPos);
 		//console.log('---------------------------');
 		if ( part !== this.sequence[this.clickPos] ) {	// incorrect input
-			console.log('1. checkInput - incorrect input');
+			var flash = 0;
 			display('XX');
-			var flash = 1;
-			var x = window.setTimeout(1000, xx);
-			console.log('x: ',x);
-			function xx(){
-				console.log('in next, flash: ', flash);
-				if ( flash <= 6 ){
+			var x = window.setInterval(
+				function (){
+				console.log('incorrect flash: ', flash);
+				if ( flash < 6 ){
 					flash%2 === 0 ? display('XX') : display('');
 					flash++;
 				}
 				else{
+					clearInterval(x);
 					console.log('else');
-					this.incorrect();
+					g.incorrect();
 				}
-			}
-			
-			//return;
+			}, 400);
+
 		} else if (this.clickPos === this.win){ 				// the game is won
-			display(this.win);
-			startSimon();
-			//return;
+			
+			var flash = 0;
+			display('');
+			var x = window.setInterval(
+				function (){
+				console.log('win flash: ', flash);
+				if ( flash < 6 ){
+					flash%2 === 0 ? display(g.win+1) : display('');
+					flash++;
+				}
+				else{
+					clearInterval(x);
+					console.log('else');
+					startSimon();
+				}
+			}, 400);
+
 		} else if( this.clickPos >= this.currentPos ){			// show the next sequence
 			this.clickPos = 0;
 			this.currentPos++;
-			display(this.currentPos + 1);
-			highlight(this.sequence[0], highlightTime);
+			window.setTimeout(
+				function(){
+					display(g.currentPos + 1);
+					highlight(g.sequence[0], highlightTime);
+				}, 400);
+
 		} else {											// correct part clicked, wait for the next click
 			this.clickPos++;
 		} 
-		console.log('end of function');
 	},
 	incorrect: function(){
 		if (strictON){											// start over
@@ -92,6 +107,7 @@ Game.prototype = {
 			highlight(this.sequence[0], highlightTime);			
 		} else {												// show the sequence again
 			this.clickPos = 0;
+			display(this.currentPos+1);
 			highlight(this.sequence[0], highlightTime);
 		}
 	},
@@ -184,18 +200,24 @@ $('.part').mousedown(function(e){
 	if (!SimonON) return;
 	if (!gameInProgress) return;	
 	var pressed = Number(e.target.id);
-	
+	window.setTimeout(					// add a slight delay after the button is pressed
+		function(){
+			g.checkInput(pressed);
+		}, 500);
+
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
-	g.checkInput(pressed);
 });
 
 $('.part').mouseup(function(){
 	//display('up');
 	if (!SimonON) return;
 	if (!gameInProgress) return;
+
 	$('#simon-part-click').css('z-index', '-10');
+
+
 });
 
 //     Resize event and function     \\
@@ -307,65 +329,8 @@ input:checked + .slider:before {
 //     Ensure the game is correctly displayed     \\
 $( document ).ready(function() {
 	correctSize();
-
-var promiseCount = 0;
-
-function testPromise() {
-    var thisPromiseCount = 11;
-
-    console.log('beforeend', thisPromiseCount +
-        ') Started (<small>Sync code started</small>)<br/>');
-
-    // We make a new promise: we promise a numeric count of this promise, starting from 1 (after waiting 3s)
-    var p1 = new Promise(
-        // The resolver function is called with the ability to resolve or
-        // reject the promise
-        function(resolve, reject) {
-            console.log('beforeend', thisPromiseCount +
-                ') Promise started (<small>Async code started</small>)<br/>');
-            // This is only an example to create asynchronism
-            window.setTimeout(
-                function() {
-                    // We fulfill the promise !
-                    reject('aight happening...');
-                    //resolve(20);
-                }, Math.random() * 2000 + 1000);
-        }
-    );
-
-    // We define what to do when the promise is resolved/fulfilled with the then() call,
-    // and the catch() method defines what to do if the promise is rejected.
-    p1.then(
-        // Log the fulfillment value
-        function(val) {
-            console.log('beforeend', val +
-                ') Promise fulfilled (<small>Async code terminated</small>)<br/>');
-            	return val + 10;
-        })
-        .then(
-    	function(val) {
-    		console.log(val);
-    	})
-    .catch(
-        // Log the rejection reason
-        function(reason) {
-            console.log('Handle rejected promise ('+reason+') here.');
-        });
-
-    console.log('beforeend', thisPromiseCount +
-        ') Promise made (<small>Sync code terminated</small>)<br/>');
-	}
-
-	//testPromise();
-
-	function wait(val){
-		window.setTimeout(
-   		function() {
-   			console.log('after 2 sec');
-   			return true;
-   		}, 2000);
-	}
-
+	
+/*
 	var x = new Promise(
 		function(resolve, reject) {
 			var times = 1;
@@ -385,4 +350,7 @@ function testPromise() {
 	x.then(function(val){
 		console.log('after the flashing: ', val);
 	})
+
+*/
+
 });

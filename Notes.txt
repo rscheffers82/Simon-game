@@ -66,16 +66,18 @@ v write input checking part
 v write setSequence function, random
 v click start while in the game, reset and show a new sequence
 v victory @ 20 steps
-- add flash display (for win and error)
+v add flash display (for win and error)
 	> https://www.promisejs.org/
 	> https://medium.freecodecamp.com/javascript-promises-explained-by-gambling-at-a-casino-28ad4c5b2573#.q1asmwwd1
-- add proper delay
+v add proper delay
+v add delay after no input
+
 - add strict LED
 - shadow buttons
-- add sounds
-
-- fix inner part accepting clicks, overlay below the buttons of inner, no click / pointer an option?
 - fix footer, text a little lower
+- add sounds
+- fix inner part accepting clicks, overlay below the buttons of inner, no click / pointer an option?
+
 - create readme file
 - check cross browser compatibility
 

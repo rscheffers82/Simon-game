@@ -4,15 +4,22 @@
 /  http://www.styleseven.com
 */
 
-
 /* Stylesheet for ... Simon Game */
 
-// vars
-$main-blue: #363E84;
-$dark-blue: #171A38;
-$white: #fafafc;
 
-// main style for the center layout
+// === VARIABLES === \\
+
+$black: #222223;
+$white: #fafafc;
+$passive-red: #32050C;
+$active-red: #DC0D29;
+
+$width: 80vw;
+$height: 80vw;
+$max-height: 80vh;
+$max-width: 80vh;
+
+// == main style for the center layout == \\
 body {
   background: $white;
   color: black;
@@ -77,11 +84,6 @@ body {
 img{
 	display: inline-block;
 }
-
-$width: 80vw;
-$height: 80vw;
-$max-height: 80vh;
-$max-width: 80vh;
 
 /* === Custom styling depending on the project === */
 .simon{
@@ -168,15 +170,15 @@ $max-width: 80vh;
   height: $height * (65/900);
   max-width: $max-width * (95/900);
   max-height: $max-height * (65/900);
-  background-color: #32050C;
-  border: 0.04em solid #222223;
+  background-color: $passive-red;
+  border: 0.04em solid $black;
   border-radius: 0.3em;
   top: 39vh;
   left: 27.5vh;
   font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 2em;
   letter-spacing: 0.2em;
-  color: #DC0D29; // used for the letters
+  color: $active-red; // used for the letters
   padding-left: 0.15em;
 }
 
@@ -186,10 +188,10 @@ $max-width: 80vh;
   height: $height * (40/900);
   max-width: $max-width * (40/900);
   max-height: $max-height * (40/900);
-  border: 0.04em solid #000000;
+  border: 0.04em solid $black;
   background-color: red;
   border-radius: 50%;
-  top: 40.1vh;
+  top: 41vh;
   left: 39vh;
 }
 #strict{
@@ -198,11 +200,34 @@ $max-width: 80vh;
   height: $height * (40/900);
   max-width: $max-width * (40/900);
   max-height: $max-height * (40/900);
-  border: 0.04em solid #000000;
+  border: 0.04em solid $black;
+ // background-image: 
+  //  radial-gradient(
+ //       red,
+ //       red 0.3vw,
+ //       black 0.35vw,
+//        yellow 0.4vw
+//      );
   background-color: yellow;
   border-radius: 50%;
-  top: 40.1vh;
+  top: 41vh;
   left: 46vh;
+}
+
+.strictLED{
+  position: absolute;
+  width: $width * (13/900);
+  height: $height * (13/900);
+  max-width: $max-width * (13/900);
+  max-height: $max-height * (13/900);
+  border: 0.04em solid $black;
+  background-color: $passive-red;    //off
+  border-radius: 50%;
+  top: 39.2vh;
+  left: 47.15vh;
+}
+.LEDon {
+  background-color: $active-red;     //on
 }
 
 .count{
@@ -277,7 +302,6 @@ input {display:none;}
   border: 2px solid #852424;
   -webkit-transition: .1s;
   transition: .1s;
-  //border: 1px solid #fafafc;
 }
 
 input:checked + .slider:before {
@@ -294,6 +318,6 @@ input:checked + .slider2:before {   // needed because of the resize, this class 
 
 /* DEBUG */
 .border{
-  border: 5px solid #fafafc;
+  border: 5px solid $white;
 }
 

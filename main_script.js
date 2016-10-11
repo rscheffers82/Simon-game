@@ -139,7 +139,9 @@ var startSimon = function(){			// start button is pressed
 var setStrict = function(){
 	if (!SimonON) return;
 	strictON = strictON === true ? false : true;
-	// set / unset indicator
+	// set / unset strict LED
+	$('.strictLED').toggleClass('LEDon');
+
 }
 
 var display = function(output){
@@ -242,7 +244,7 @@ function correctSize() {
 	},{	
 		"name": "#start",
 		"property": "top",
-		"value": "40.1" 
+		"value": "41" 
 	},{  
 		"name": "#start",
 		"property": "left",
@@ -250,12 +252,20 @@ function correctSize() {
 	},{
 		"name": "#strict",
 		"property": "top",
-		"value": "40.1" 
+		"value": "41" 
 	},{
 		"name": "#strict",
 		"property": "left",
 		"value": "46" 
 	},{
+		"name": ".strictLED",
+		"property": "top",
+		"value": "39.2" 
+	},{
+		"name": ".strictLED",
+		"property": "left",
+		"value": "47.15" 
+	},{		
 		"name": ".count",
 		"property": "top",
 		"value": "45.5" 

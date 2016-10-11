@@ -160,10 +160,10 @@ img {
   height: 3.55556vw;
   max-width: 3.55556vh;
   max-height: 3.55556vh;
-  border: 0.04em solid #000000;
+  border: 0.04em solid #222223;
   background-color: red;
   border-radius: 50%;
-  top: 40.1vh;
+  top: 41vh;
   left: 39vh; }
 
 #strict {
@@ -172,11 +172,26 @@ img {
   height: 3.55556vw;
   max-width: 3.55556vh;
   max-height: 3.55556vh;
-  border: 0.04em solid #000000;
+  border: 0.04em solid #222223;
   background-color: yellow;
   border-radius: 50%;
-  top: 40.1vh;
+  top: 41vh;
   left: 46vh; }
+
+.strictLED {
+  position: absolute;
+  width: 1.15556vw;
+  height: 1.15556vw;
+  max-width: 1.15556vh;
+  max-height: 1.15556vh;
+  border: 0.04em solid #222223;
+  background-color: #32050C;
+  border-radius: 50%;
+  top: 39.2vh;
+  left: 47.15vh; }
+
+.LEDon {
+  background-color: #DC0D29; }
 
 .count {
   position: absolute;

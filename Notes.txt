@@ -72,7 +72,7 @@ v add flash display (for win and error)
 v add proper delay
 v add delay after no input
 
-- add strict LED
+v add strict LED
 - shadow buttons
 - fix footer, text a little lower
 - add sounds

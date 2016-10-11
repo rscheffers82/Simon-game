@@ -73,10 +73,10 @@ v add proper delay
 v add delay after no input
 
 v add strict LED
-- shadow buttons
-- fix footer, text a little lower
+v shadow buttons
+v fix footer, text a little lower
+x fix inner part accepting clicks, overlay below the buttons of inner, no click/ pointer an option?
 - add sounds
-- fix inner part accepting clicks, overlay below the buttons of inner, no click / pointer an option?
 
 - create readme file
 - check cross browser compatibility

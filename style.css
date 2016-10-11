@@ -10,7 +10,7 @@ body {
   background: url(images/background.jpg) no-repeat center center fixed;
   font-family: 'Lato', sans-serif;
   margin: 0;
-  font-size: 2vh; }
+  font-size: 1.85vh; }
 
 .wrapper {
   height: 100%;
@@ -76,7 +76,11 @@ img {
   width: 80vw;
   height: 80vw;
   max-height: 80vh;
-  max-width: 80vh; }
+  max-width: 80vh;
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 12px 2px #222223;
+  -moz-box-shadow: 5px 5px 12px 2px #222223;
+  box-shadow: 5px 5px 12px 2px #222223; }
 
 .part, .simon-part-left, .simon-part-right, #simon-part-click {
   position: relative;
@@ -164,7 +168,11 @@ img {
   background-color: red;
   border-radius: 50%;
   top: 41vh;
-  left: 39vh; }
+  left: 39vh;
+  -webkit-box-shadow: 1px 1px 3px 0px #222223;
+  -moz-box-shadow: 1px 1px 3px 0px #222223;
+  box-shadow: 1px 1px 2px 0px #222223;
+  pointer-event: auto; }
 
 #strict {
   position: absolute;
@@ -176,7 +184,16 @@ img {
   background-color: yellow;
   border-radius: 50%;
   top: 41vh;
-  left: 46vh; }
+  left: 46vh;
+  -webkit-box-shadow: 1px 1px 3px 0px #222223;
+  -moz-box-shadow: 1px 1px 3px 0px #222223;
+  box-shadow: 1px 1px 2px 0px #222223;
+  pointer-event: auto; }
+
+.noshadow {
+  -webkit-box-shadow: 0px 0px 1px 0 #222223 !important;
+  -moz-box-shadow: 0px 0px 1px 0 #222223 !important;
+  box-shadow: 0px 0px 1px 0 #222223 !important; }
 
 .strictLED {
   position: absolute;
@@ -270,6 +287,9 @@ input:checked + .slider2:before {
   -webkit-transform: translateX(3.2vw);
   -ms-transform: translateX(3.2vw);
   transform: translateX(3.2vw); }
+
+.container {
+  padding-top: 0.5em; }
 
 /* DEBUG */
 .border {

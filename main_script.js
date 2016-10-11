@@ -182,7 +182,7 @@ var highlight = function(button, duration, tempSeqPos){
 $('.simon').on('click', function(e){
 	var pressed = e.target.id;
 	if (!pressed) return;			// don't execute on invalid click events
-	console.log(pressed);
+	//console.log(pressed);
 
 	switch(pressed){
 		case 'on-off' : 
@@ -198,28 +198,46 @@ $('.simon').on('click', function(e){
 });
 
 $('.part').mousedown(function(e){
-	//console.log('part-down');
+	console.log('part-down');
 	if (!SimonON) return;
 	if (!gameInProgress) return;	
 	var pressed = Number(e.target.id);
-	window.setTimeout(					// add a slight delay after the button is pressed
-		function(){
-			g.checkInput(pressed);
-		}, 500);
 
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
+
+	window.setTimeout(					// add a slight delay after the button is pressed
+	function(){
+		g.checkInput(pressed);
+	}, 500);
 });
 
 $('.part').mouseup(function(){
-	//display('up');
+	console.log('part-up');
 	if (!SimonON) return;
 	if (!gameInProgress) return;
 
 	$('#simon-part-click').css('z-index', '-10');
 
 
+});
+
+$('.control').mousedown(function(e){
+	console.log('btn-down');
+	if (!SimonON) return;
+
+	var pressed = e.target.id;
+	console.log(pressed);
+	$('#' + pressed).addClass('noshadow');
+});
+
+$('.control').mouseup(function(e){
+	console.log('btn-up');
+	if (!SimonON) return;
+
+	var pressed = e.target.id;
+	$('#' + pressed).removeClass('noshadow');
 });
 
 //     Resize event and function     \\
@@ -232,7 +250,7 @@ function correctSize() {
 	css_values = [{
 		"name": "body",
 		"property": "font-size",
-		"value": "2" 
+		"value": "1.85" 
 	},{
 		"name": ".display",
 		"property": "top",

@@ -327,7 +327,8 @@ function testPromise() {
             window.setTimeout(
                 function() {
                     // We fulfill the promise !
-                    resolve(20);
+                    reject('aight happening...');
+                    //resolve(20);
                 }, Math.random() * 2000 + 1000);
         }
     );
@@ -353,11 +354,35 @@ function testPromise() {
 
     console.log('beforeend', thisPromiseCount +
         ') Promise made (<small>Sync code terminated</small>)<br/>');
-}
+	}
 
-testPromise();
+	//testPromise();
 
+	function wait(val){
+		window.setTimeout(
+   		function() {
+   			console.log('after 2 sec');
+   			return true;
+   		}, 2000);
+	}
 
-
-
+	var x = new Promise(
+		function(resolve, reject) {
+			var times = 1;
+			var time = window.setInterval(
+				function() {
+					console.log(times);
+					if ( times <= 8 ){
+						times%2 == 1 ? display('xx') : display('');
+						times++;
+					} else {
+						clearTimeout(time);
+						resolve(10);
+					}
+				}, 400 )
+		}
+	);
+	x.then(function(val){
+		console.log('after the flashing: ', val);
+	})
 });

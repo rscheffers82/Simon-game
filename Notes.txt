@@ -76,10 +76,13 @@ v add strict LED
 v shadow buttons
 v fix footer, text a little lower
 x fix inner part accepting clicks, overlay below the buttons of inner, no click/ pointer an option?
-- add sounds
+v check cross browser compatibility ( IE11, Firefox, Chrome )
+
+v add sounds
+- transfer to wav currently you hear a click
+- add FB share details
 
 - create readme file
-- check cross browser compatibility
 
 === { Build notes } ===
 

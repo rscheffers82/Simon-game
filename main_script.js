@@ -7,6 +7,7 @@ var strictON = false;							// Strict mode, no mistake is allowed
 var clicked = ['top-left', 'top-right', 
 			'bottom-right', 'bottom-left'];
 var highlightTime = 800;
+var sound = [];
 
 var Game = function(){
 	this.sequence = [];			// g.sequence of button presses unique to each game
@@ -19,7 +20,7 @@ Game.prototype = {
 		this.sequence = [];
 		this.currentPos = 0;		// current step in the game
 		this.clickPos = 0;			// clicked step in currentPos
-		this.win = 3; 				// When is the game won, total steps starting at 0
+		this.win = 19; 				// When is the game won, total steps starting at 0
 		display(this.currentPos + 1);
 	},
 
@@ -118,6 +119,12 @@ Game.prototype = {
 
 var g = new Game();
 
+var importSound = function(){
+	for (i = 0; i<4; i++){
+		sound[i] = new Audio('sounds/simonSound'+i+'.mp3');
+	}
+}
+
 var switchON = function(on){				// on/off button is pressed
 	SimonON = on;							// true or false
 	if (!on) {
@@ -161,21 +168,21 @@ var highlight = function(button, duration, tempSeqPos){
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[button]);
 	$('#simon-part-click').css('z-index', '10');
-	
-	//timer event
-	window.setTimeout(dim, duration);
-	function dim(){
+	sound[button].play();	
 
+	//timer event
+	window.setTimeout(
+		function(){
 		$('#simon-part-click').removeClass(clicked[button]);
 		$('#simon-part-click').css('z-index', '-10');
 		$('img').css('pointer-events', 'auto');
 		tempSeqPos = tempSeqPos === undefined ? 1 : tempSeqPos += 1;
 
-		var delay = window.setTimeout(next, 250)
-		function next(){
-			highlight(g.sequence[tempSeqPos], duration, tempSeqPos);
-		}
-	}
+		var delay = window.setTimeout(
+			function(){
+				highlight(g.sequence[tempSeqPos], duration, tempSeqPos);
+			}, 250);
+	}, duration);
 }
 
 //     click event for input     \\
@@ -206,7 +213,8 @@ $('.part').mousedown(function(e){
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
-
+	sound[pressed].play();
+	
 	window.setTimeout(					// add a slight delay after the button is pressed
 	function(){
 		g.checkInput(pressed);
@@ -357,6 +365,7 @@ input:checked + .slider:before {
 //     Ensure the game is correctly displayed     \\
 $( document ).ready(function() {
 	correctSize();
+	importSound();
 	
 /*
 	var x = new Promise(

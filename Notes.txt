@@ -79,10 +79,8 @@ x fix inner part accepting clicks, overlay below the buttons of inner, no click/
 v check cross browser compatibility ( IE11, Firefox, Chrome )
 
 v add sounds
-- transfer to wav currently you hear a click
-- add FB share details
-
-- create readme file
+v add FB share details
+v create readme file
 
 === { Build notes } ===
 

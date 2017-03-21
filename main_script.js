@@ -3,8 +3,8 @@
 //     Global vars     \\
 var SimonON = false;							// Is the game switched on or off, true or false
 var gameInProgress = false;						// Has start been pressed
-var strictON = false;							// Strict mode, no mistake is allowed			
-var clicked = ['top-left', 'top-right', 
+var strictON = false;							// Strict mode, no mistake is allowed
+var clicked = ['top-left', 'top-right',
 			'bottom-right', 'bottom-left'];
 var highlightTime = 800;
 var sound = [];
@@ -12,8 +12,8 @@ var sound = [];
 var Game = function(){
 	this.sequence = [];			// g.sequence of button presses unique to each game
 	this.currentPos = 0;		// At what position is the game in the g.sequence
-	this.clickPos = 0;	
-}
+	this.clickPos = 0;
+};
 
 Game.prototype = {
 	reset: function(){
@@ -24,24 +24,24 @@ Game.prototype = {
 		display(this.currentPos + 1);
 	},
 
-	setSequence: function(){	
+	setSequence: function(){
 		var sides = [];
-		sides[0] = [3,1]; sides[1] = [0,2]; sides[2] = [1,3]; sides[3] = [0,2]; 
+		sides[0] = [3,1]; sides[1] = [0,2]; sides[2] = [1,3]; sides[3] = [0,2];
 		var opposite = [];
 		opposite[0] = [0,2]; opposite[1] = [1,3]; opposite[2] = [2,0]; opposite[3] = [3,1]; //opposite parts - 0=2, 1=3, 2=0, 3=1
 		var mainOption;		// choice between sides and same or opposite
 		var choice;			// 0 or 1, choose from the two sub-options
-		var previous;		
+		var previous;
 		var part;
-		
-		for (x = 0; x <= this.win; x++){
+
+		for (var x = 0; x <= this.win; x++){
 			mainOption = Math.floor(Math.random() * 100);
 			previous = this.sequence[x-1] !== undefined ? this.sequence[x-1] : Math.floor(Math.random() * 4);
 			choice = Math.floor(Math.random() * 2);
 
 			if ( mainOption <= 50 ) part = sides[previous][choice];
 			else part = opposite[previous][choice];
-			
+
 			this.sequence.push( part );
 		}
 		console.log(this.sequence);
@@ -54,9 +54,9 @@ Game.prototype = {
 		//console.log('clickPos: ', this.clickPos);
 		//console.log('---------------------------');
 		if ( part !== this.sequence[this.clickPos] ) {	// incorrect input
-			var flash = 0;
+			let flash = 0;
 			display('XX');
-			var x = window.setInterval(
+			let x = window.setInterval(
 				function (){
 				console.log('incorrect flash: ', flash);
 				if ( flash < 6 ){
@@ -71,10 +71,10 @@ Game.prototype = {
 			}, 400);
 
 		} else if (this.clickPos === this.win){ 				// the game is won
-			
-			var flash = 0;
+
+			let flash = 0;
 			display('');
-			var x = window.setInterval(
+			let x = window.setInterval(
 				function (){
 				console.log('win flash: ', flash);
 				if ( flash < 6 ){
@@ -99,13 +99,13 @@ Game.prototype = {
 
 		} else {											// correct part clicked, wait for the next click
 			this.clickPos++;
-		} 
+		}
 	},
 	incorrect: function(){
 		if (strictON){											// start over
 			this.reset();
 			this.setSequence();
-			highlight(this.sequence[0], highlightTime);			
+			highlight(this.sequence[0], highlightTime);
 		} else {												// show the sequence again
 			this.clickPos = 0;
 			display(this.currentPos+1);
@@ -115,25 +115,25 @@ Game.prototype = {
 	nextPos: function(){
 
 	}
-}
+};
 
 var g = new Game();
 
 var importSound = function(){
-	for (i = 0; i<4; i++){
+	for (let i = 0; i<4; i++){
 		sound[i] = new Audio('sounds/simonSound'+i+'.mp3');
 	}
-}
+};
 
 var switchON = function(on){				// on/off button is pressed
 	SimonON = on;							// true or false
 	if (!on) {
 		$('#simon-part-click').css('z-index', '-10');
-		gameInProgress = false;	
+		gameInProgress = false;
 	}
 	else g.reset();
 	display( on === true ? '--' : '' );
-}
+};
 
 var startSimon = function(){			// start button is pressed
 	if (!SimonON) return;
@@ -141,34 +141,33 @@ var startSimon = function(){			// start button is pressed
 	g.reset();
 	g.setSequence();
 	highlight(g.sequence[0], highlightTime);
-}
+};
 
 var setStrict = function(){
 	if (!SimonON) return;
 	strictON = strictON === true ? false : true;
 	// set / unset strict LED
 	$('.strictLED').toggleClass('LEDon');
-
-}
+};
 
 var display = function(output){
 	$('.display').text(output);
-}
+};
 
 var highlight = function(button, duration, tempSeqPos){
 	//console.log('tempSeqPos(highlight): ', tempSeqPos);
-	//console.log('g.currentPos(highlight): ', g.currentPos);	
+	//console.log('g.currentPos(highlight): ', g.currentPos);
 	//console.log(tempSeqPos >= g.currentPos);
 	if (tempSeqPos > g.currentPos || !SimonON) {
 		$('#simon-part').css('pointer-events', 'auto');
 		return;
 	}
-	
+
 	$('img').css('pointer-events', 'none');
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[button]);
 	$('#simon-part-click').css('z-index', '10');
-	sound[button].play();	
+	sound[button].play();
 
 	//timer event
 	window.setTimeout(
@@ -178,12 +177,12 @@ var highlight = function(button, duration, tempSeqPos){
 		$('img').css('pointer-events', 'auto');
 		tempSeqPos = tempSeqPos === undefined ? 1 : tempSeqPos += 1;
 
-		var delay = window.setTimeout(
+		window.setTimeout(
 			function(){
 				highlight(g.sequence[tempSeqPos], duration, tempSeqPos);
 			}, 250);
 	}, duration);
-}
+};
 
 //     click event for input     \\
 $('.simon').on('click', function(e){
@@ -192,7 +191,7 @@ $('.simon').on('click', function(e){
 	//console.log(pressed);
 
 	switch(pressed){
-		case 'on-off' : 
+		case 'on-off' :
 			switchON(e.target.checked);
 			break;
 		case 'start'  :
@@ -207,14 +206,14 @@ $('.simon').on('click', function(e){
 $('.part').mousedown(function(e){
 	console.log('part-down');
 	if (!SimonON) return;
-	if (!gameInProgress) return;	
+	if (!gameInProgress) return;
 	var pressed = Number(e.target.id);
 
 	$('#simon-part-click').removeClass('top-left top-right bottom-left bottom-right');
 	$('#simon-part-click').addClass(clicked[pressed]);
 	$('#simon-part-click').css('z-index', '10');
 	sound[pressed].play();
-	
+
 	window.setTimeout(					// add a slight delay after the button is pressed
 	function(){
 		g.checkInput(pressed);
@@ -255,46 +254,46 @@ function correctSize() {
     var w = window.innerWidth;
     var h = window.innerHeight;
 
-	css_values = [{
+	var css_values = [{
 		"name": "body",
 		"property": "font-size",
-		"value": "1.85" 
+		"value": "1.85"
 	},{
 		"name": ".display",
 		"property": "top",
-		"value": "39" 
+		"value": "39"
 	},{
 		"name": ".display",
 		"property": "left",
-		"value": "27.5" 
-	},{	
+		"value": "27.5"
+	},{
 		"name": "#start",
 		"property": "top",
-		"value": "41" 
-	},{  
+		"value": "41"
+	},{
 		"name": "#start",
 		"property": "left",
-		"value": "39" 
+		"value": "39"
 	},{
 		"name": "#strict",
 		"property": "top",
-		"value": "41" 
+		"value": "41"
 	},{
 		"name": "#strict",
 		"property": "left",
-		"value": "46" 
+		"value": "46"
 	},{
 		"name": ".strictLED",
 		"property": "top",
-		"value": "39.2" 
+		"value": "39.2"
 	},{
 		"name": ".strictLED",
 		"property": "left",
-		"value": "47.15" 
-	},{		
+		"value": "47.15"
+	},{
 		"name": ".count",
 		"property": "top",
-		"value": "45.5" 
+		"value": "45.5"
 	},{
 		"name": ".count",
 		"property": "left",
@@ -302,15 +301,15 @@ function correctSize() {
 	},	{
 		"name": ".start-txt",
 		"property": "top",
-		"value": "45.5" 
+		"value": "45.5"
 	},{
 		"name": ".start-txt",
 		"property": "left",
-		"value": "37.0" 
-	},{		
+		"value": "37.0"
+	},{
 		"name": ".strict-txt",
 		"property": "top",
-		"value": "45.5" 
+		"value": "45.5"
 	},{
 		"name": ".strict-txt",
 		"property": "left",
@@ -318,27 +317,27 @@ function correctSize() {
 	},{
 		"name": ".off-text",
 		"property": "top",
-		"value": "49.6" 
+		"value": "49.6"
 	},{
 		"name": ".off-text",
 		"property": "left",
-		"value": "32.4" 	
-	},{	
+		"value": "32.4"
+	},{
 		"name": ".on-text",
 		"property": "top",
-		"value": "49.6" 
+		"value": "49.6"
 	},{
 		"name": ".on-text",
 		"property": "left",
-		"value": "43.7" 	
-	},{		
+		"value": "43.7"
+	},{
 		"name": ".switch",
 		"property": "top",
-		"value": "49.5" 
+		"value": "49.5"
 	},{
 		"name": ".switch",
 		"property": "left",
-		"value": "37" 
+		"value": "37"
 	}];
 /*
 input:checked + .slider:before {
@@ -355,8 +354,8 @@ input:checked + .slider:before {
 		$('.slider').addClass('slider2');		// vh to vw change
 		add = 'vw';
 	}
-	//console.log('all values', css_values);
-//	console.log('add', css_values[0].value + add)
+	// console.log('all values', css_values);
+	// console.log('add', css_values[0].value + add)
 	css_values.forEach(function(e,count){
 		$( css_values[count].name).css(css_values[count].property, css_values[count].value + add);
 	});
@@ -366,28 +365,4 @@ input:checked + .slider:before {
 $( document ).ready(function() {
 	correctSize();
 	importSound();
-	
-/*
-	var x = new Promise(
-		function(resolve, reject) {
-			var times = 1;
-			var time = window.setInterval(
-				function() {
-					console.log(times);
-					if ( times <= 8 ){
-						times%2 == 1 ? display('xx') : display('');
-						times++;
-					} else {
-						clearTimeout(time);
-						resolve(10);
-					}
-				}, 400 )
-		}
-	);
-	x.then(function(val){
-		console.log('after the flashing: ', val);
-	})
-
-*/
-
 });
